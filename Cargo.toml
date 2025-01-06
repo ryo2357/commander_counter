@@ -1,0 +1,35 @@
+[package]
+name = "commander_counter"
+version = "0.1.0"
+edition = "2021"
+
+# Cargo apkでAndroidManifest.xmlとして解釈される
+# [rust-mobile/cargo-apk: Helps cargo build APKs](https://github.com/rust-mobile/cargo-apk)
+[package.metadata.android]
+# 横向きのアプリ
+application.activity.orientation = "landscape"
+# フルスクリーンモード（時刻が消える）
+application.theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen"
+
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+
+[target.'cfg(target_os = "android")'.dependencies]
+android-activity = "0.6.0"
+slint = { version = "1.8.0", features = [
+  "backend-android-activity-06",
+  "i-slint-backend-android-activity",
+] }
+
+[target.'cfg(not(target_os = "android"))'.dependencies]
+slint = { version = "1.8.0", features = ["backend-winit"] }
+
+[build-dependencies]
+slint-build = "1.8.0"
+
+[[bin]]
+name = "dev"
+path = "src/bin/main.rs"
