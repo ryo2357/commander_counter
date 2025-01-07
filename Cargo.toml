@@ -3,12 +3,15 @@ name = "commander_counter"
 version = "0.1.0"
 edition = "2021"
 
-# Cargo apkでAndroidManifest.xmlとして解釈される
+# Cargo apk用の設定
 # [rust-mobile/cargo-apk: Helps cargo build APKs](https://github.com/rust-mobile/cargo-apk)
 [package.metadata.android]
+build_targets = ["aarch64-linux-android"]
+
 # 横向きのアプリ
 application.activity.orientation = "landscape"
 # フルスクリーンモード（時刻が消える）
+# [<アプリケーション>  |  Android Developers](https://developer.android.com/guide/topics/manifest/application-element?hl=ja#theme)
 application.theme = "@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen"
 
 

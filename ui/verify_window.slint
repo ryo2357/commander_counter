@@ -1,0 +1,21 @@
+import { Button, VerticalBox } from "std-widgets.slint";
+
+
+export component VerifyWindow inherits Window {
+    width: 860px;
+    height: 400px;
+    // android側には影響しない
+    icon: @image-url("../resources/icon/icon.png");
+    title: @tr("Commander Counter");
+    in property <int> counter: 1; // 1
+    callback clicked <=> btn.clicked; // 2, 4
+    VerticalBox {
+        Text {
+            text: "test" + counter;
+        }
+
+        btn := Button {
+            text: "yay";
+        } // 3
+    }
+}
